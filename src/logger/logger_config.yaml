@@ -1,0 +1,30 @@
+version: 1
+disable_existing_loggers: true
+formatters:
+  default:
+    format: '[%(asctime)s-%(levelname)-7s-%(name)s-#%(lineno)d] %(message)s'
+    datefmt: '%Y/%m/%d-%H:%M:%S'
+
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: default
+    level   : NOTSET
+    stream  : ext://sys.stdout
+  file:
+    level: NOTSET
+    formatter: default
+    class : src.logger.get_configured_logger.myFileHandler
+    root: logging
+    mode: 'a'
+    encoding: 'utf-8'
+    
+loggers:
+  src:
+    level: 'INFO'
+    propagate: false
+    handlers: [console, file]
+
+root:
+  level: 'INFO'
+  handlers: [console, file]

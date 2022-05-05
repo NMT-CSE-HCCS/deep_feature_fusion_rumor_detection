@@ -1,0 +1,27 @@
+version: 1
+disable_existing_loggers: true
+formatters:
+  default:
+    format: '[%(asctime)s-%(levelname)-7s-%(name)s-#%(lineno)d] %(message)s'
+    datefmt: '%H:%M:%S'
+
+handlers:
+  console:
+    class : logging.StreamHandler
+    formatter: default
+    level   : DEBUG
+    stream  : ext://sys.stdout
+
+loggers:
+  __main__:
+    handlers: [console]
+    level: INFO
+    propagate: false
+  src:
+    handlers: [console]
+    level: INFO
+    propagate: false
+
+root:
+    handlers: [console]
+    level: INFO
