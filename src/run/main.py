@@ -1,19 +1,3 @@
-#!/fs1/epscor/home/zluo_epscor/.conda/envs/py38c11/bin/python3.8 
-
-#SBATCH --job-name py   ## name that will show up in the queue
-#SBATCH --output ./slurm/slurm_out/%x-%j.out   ## filename of the output; the %j is equal to jobID; default is slurm-[jobID].out
-#SBATCH --error ./slurm/slurm_out/%x-%j.err
-#SBATCH --ntasks=1
-#SBATCH --gpus-per-task=1
-#SBATCH --cpus-per-task=8
-#SBATCH --mem-per-cpu=4G
-#SBATCH --partition=epscor  ## the partitions to run in (comma seperated)
-##SBATCH --exclude=discovery-g[1,12,13]
-##SBATCH --nodelist=discovery-g[12,13]
-#SBATCH --time=3-24:00:00  ## time for analysis (day-hour:min:sec)
-
-
-
 import os
 import sys
 sys.path.append('.')
@@ -48,7 +32,6 @@ def main():
         train(args)
     except Exception:
         root_logger.error(f"Error pid {os.getpid()}: {traceback.format_exc()}")
-        # print(f"Error pid {os.getpid()}: {traceback.format_exc()}")
 
 
 if __name__ == '__main__':
