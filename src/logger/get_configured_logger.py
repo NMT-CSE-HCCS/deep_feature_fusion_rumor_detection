@@ -1,9 +1,8 @@
-
-import sys
 import io
 import logging
 import logging.config
 import os
+import sys
 import time
 from pathlib import Path
 

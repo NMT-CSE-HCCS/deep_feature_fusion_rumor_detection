@@ -1,5 +1,6 @@
 import argparse
 import logging
+
 from src.datasets.dataset_select import DatasetSelection
 from src.models.model_select import ModelSelection
 
@@ -33,15 +34,14 @@ def add_trainer_parameter(parser):
                         help='Weight decay (L2 loss on parameters).')
     parser.add_argument('--determ', action='store_true',
                         help='Deterministic flag')
-    parser.add_argument('--profiler', action='store_true')
     parser.add_argument('--num_workers', type=int, default=8)
 
 def add_system_parameter(parser):
-    parser.add_argument('--expname', type=str, default='testexp')
+    parser.add_argument('--expname', type=str, default='rumor_detection')
     parser.add_argument('--no_cuda', action='store_true',
                     help='Disables CUDA training.')
     parser.add_argument('--debug', action='store_true',
-                            help='Debug flag')
+                            help='Debug flag for logging debug level')
     parser.add_argument('--seed', type=int, default=42)
 
 

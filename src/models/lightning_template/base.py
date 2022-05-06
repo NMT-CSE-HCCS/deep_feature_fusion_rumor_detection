@@ -1,15 +1,14 @@
 import logging
-from typing import List, Any
-import pytorch_lightning as pl
+from typing import Any, List
+
 import pandas as pd
+import pytorch_lightning as pl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.optim import Adam
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
-from torchmetrics import ConfusionMatrix, MeanMetric, Accuracy, F1Score
-from transformers import (AdamW,get_linear_schedule_with_warmup)
-
+from torchmetrics import Accuracy, ConfusionMatrix, F1Score, MeanMetric
+from transformers import AdamW, get_linear_schedule_with_warmup
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +20,12 @@ def pretty_print_confmx_pandas(confmx):
     pd.reset_option('display.max_columns')
     return str_confmx
 
+
+"""
+BaseModule is implemented in Pytorch-Lightning
+See more details in Pytorch-Lightning
+https://github.com/PyTorchLightning/pytorch-lightning 
+"""
 class BaseModule(pl.LightningModule):
     def __init__(self, args, nclass, model):
         super(BaseModule,self).__init__()
@@ -82,7 +87,7 @@ class BaseModule(pl.LightningModule):
         self.log(f'{phase}_f1micro', metrics['f1micro'])
         self.log(f'{phase}_f1macro', metrics['f1macro'])
         self.log(f'{phase}_acc', metrics['acc'])
-        self.log(f'{phase}_confmx', metrics['confmx'])
+        # self.log(f'{phase}_confmx', metrics['confmx'])
         
         logger.info(f'[{phase}_acc_epoch] {metrics["acc"]} at {self.current_epoch}')
         logger.info(f'[{phase}_accmacro] {metrics["accmacro"]}')

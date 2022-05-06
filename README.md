@@ -17,17 +17,13 @@ The increasing popularity of social media has made the creation and spread of ru
 This code has ben implemented in Python using Pytorch. The following Environment and Library needed to run the code is listed in requirements.txt
 
 
-
 ## Run Demo
 ```bash
 python src/run/main.py --model=RoBERTa_CNN --dataset=twitter15 --epochs=200
 ```
 
 ## Dataset
-The raw dataset can be downloaded from https://www.dropbox.com/s/7ewzdrbelpmrnxu/rumdetect2017.zip?dl=0.
-
-## Performance
-The performance of the proposed deep feature fusion method is evaluated with two public Twitter rumor datasets, Twitter 15 and Twitter 16. The results demonstrate that the proposed method achieves significantly better detection performance than other state-of-the-art baseline methods.
+The raw dataset, Twitter15 and Twitter16 can be downloaded from https://www.dropbox.com/s/7ewzdrbelpmrnxu/rumdetect2017.zip?dl=0.
 
 
 ## Citation

@@ -1,0 +1,12 @@
+anytree==2.8.0
+einops==0.4.1
+joblib==1.1.0
+numpy==1.21.6
+pandas==1.4.1
+pytorch_lightning==1.6.1
+PyYAML==6.0
+scikit_learn==1.0.2
+torch==1.10.0+cu113
+torchmetrics==0.8.1
+tqdm==4.62.3
+transformers==4.12.5

@@ -1,4 +1,6 @@
 from src.models.lightning_template.base import BaseModule
+
+
 class ModelSelection():
     model_list = ['RoBERTa_CNN','BERT_CNN']
     

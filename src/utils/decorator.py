@@ -1,13 +1,13 @@
-import pickle
-import os
-import pandas as pd
-import marshal
 import inspect
-import joblib
-from typing import Any
-from time import time
 import logging
+import os
+import pickle
 import traceback
+from time import time
+from typing import Any
+
+import joblib
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +109,7 @@ def buffer_value(protocol, folder, disable=False):
 
 
 def timeit(func):
+    """Timer decorator for logging execution time of functions"""
     def timer_wrapper(*args, **kwargs):
         t1 = time()
         out = func(*args, **kwargs)

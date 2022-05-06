@@ -1,7 +1,9 @@
-import torch.nn as nn
 import torch
+import torch.nn as nn
+
 from ..module.bert import BERT
 from ..module.cnn import CNN
+
 
 class BERT_CNN(nn.Module):
     def __init__(self, feature_dim, nclass) -> None:

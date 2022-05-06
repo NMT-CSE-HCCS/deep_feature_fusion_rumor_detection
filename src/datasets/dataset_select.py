@@ -2,6 +2,7 @@ import importlib
 import inspect
 import os
 
+
 def import_function_or_class(module,method_name):
     module = importlib.import_module(f'{module}')
     method = getattr(module, method_name)
@@ -28,6 +29,7 @@ def scan_dataset_list():
     modules = os.listdir(os.path.join(s,'model'))
     fns = [ f[:-3] for f in modules if not f.endswith('__init__.py') and f.endswith('.py')]
     return fns
+
 
 class DatasetSelection():
     dataset_list = ['twitter15', 'twitter16']

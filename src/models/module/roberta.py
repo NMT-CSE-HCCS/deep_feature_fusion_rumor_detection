@@ -1,8 +1,13 @@
-from transformers import RobertaModel
 import torch.nn as nn
+from transformers import RobertaModel
 
+"""
+A wrapper for RoBERTa model.
+See HuggingFace transformers for more details.
+https://github.com/huggingface/transformers
+"""
 class RoBERTa(nn.Module):
-    def __init__(self, pretrain_model_name) -> None:
+    def __init__(self, pretrain_model_name='roberta-base') -> None:
         super().__init__()
         self.model = RobertaModel.from_pretrained(
             pretrain_model_name, output_attentions=True

@@ -1,14 +1,19 @@
 import os
 import sys
+
 sys.path.append('.')
 import time
 import traceback
 
-from src.utils.random_seed import get_timebaesed_random_seed
 from src.logger.get_configured_logger import get_logger_seperate_config
+from src.utils.random_seed import get_timebaesed_random_seed
 
 
 def getlogger(args):
+    """
+    setup logger which store log in ./logging/
+    You can config this logger in logger_config_seperate.yaml
+    """
     midpath = f'{args.model}_{args.dataset}/'
     fn = f"fold={args.fold}_t={time.strftime('%Y-%m-%d-%H:%M:%S')}_pid={os.getpid()}"
     root_logger = get_logger_seperate_config(args.debug, args.expname, midpath, fn)
@@ -16,13 +21,14 @@ def getlogger(args):
     return root_logger
 
 def set_random_seed(args):
-    if args.determ:
-        args.seed = 42
-    else:
+    if not args.determ:
         args.seed = get_timebaesed_random_seed()
 
 def main():
-    from src.trainer.main_trainer_test import train
+    """
+    Program starts here
+    """
+    from src.trainer.main_trainer import train
     from src.trainer.options import setup_arg
     args = setup_arg()
     root_logger = getlogger(args)

@@ -1,7 +1,9 @@
-import torch.nn as nn
 import torch
-from ..module.roberta import RoBERTa
+import torch.nn as nn
+
 from ..module.cnn import CNN
+from ..module.roberta import RoBERTa
+
 
 class RoBERTa_CNN(nn.Module):
     def __init__(self, feature_dim, nclass) -> None:

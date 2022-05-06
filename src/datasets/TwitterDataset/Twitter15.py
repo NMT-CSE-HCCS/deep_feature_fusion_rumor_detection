@@ -1,5 +1,6 @@
 from .TwitterDataset import TwitterDataset
 
+
 class Twitter15(TwitterDataset):
     def __init__(self, tokenizer, max_token, 
                 max_tree, batch_size, 
