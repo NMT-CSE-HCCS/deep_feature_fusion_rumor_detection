@@ -9,6 +9,10 @@ from src.utils.cuda_status import get_num_gpus
 logger = logging.getLogger(__name__)
 
 def setup_logger(exp_name,version=None):
+    """
+    setup tensorbard logs,
+    save_dir='tensorboard_logs'
+    """
     pl_logger = TensorBoardLogger(
         save_dir='tensorboard_logs',
         name=exp_name,

@@ -22,6 +22,8 @@ def add_dataset_parameter(parser):
                         help='total number of splits for k fold cross-validation')
     parser.add_argument('--fold', type=int, default=1, 
                         help='fold number between 1 and nfold.')
+    parser.add_argument('--dataset_root', type=str, default='../rumor_detection_acl2017')
+    
 
 def add_trainer_parameter(parser):
     parser.add_argument('--epochs', type=int, default=200,

@@ -10,6 +10,7 @@ from transformers import AutoTokenizer
 from ..dataset_base import DatasetBase, find_class
 from .load_twitter_dataset import load_data
 from .Twitter_spliter import TwitterKFold
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +20,11 @@ class TwitterDataset(DatasetBase):
             batch_size, nfold, deterministic, num_workers, seed
     ) -> None:
         super().__init__(batch_size, num_workers)
-        self.root = root
+        self.root = Path(root)
+        if not self.root.exists():
+            msg = f"dataset_root '{self.root}' doesn't exist.\n" + \
+                "Please modify 'dataset_root' in options.py file"
+            raise ValueError(msg)
         self.dataset = dataset
         self.tokenizer = tokenizer
         self.max_token = max_token

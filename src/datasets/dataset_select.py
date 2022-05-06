@@ -50,8 +50,8 @@ class DatasetSelection():
             raise ValueError(f'No dataset named {name}')
         if name == 'twitter15':
             from .TwitterDataset.Twitter15 import Twitter15
-            dl = Twitter15(args.tokenizer,args.max_token,args.max_tree,args.batch_size, args.nfold,args.determ, args.num_workers, args.seed)
+            dl = Twitter15(args.dataset_root, args.tokenizer,args.max_token,args.max_tree,args.batch_size, args.nfold,args.determ, args.num_workers, args.seed)
         if name == 'twitter16':
             from .TwitterDataset.Twitter16 import Twitter16
-            dl = Twitter16(args.tokenizer,args.max_token,args.max_tree,args.batch_size, args.nfold,args.determ, args.num_workers, args.seed)
+            dl = Twitter16(args.dataset_root, args.tokenizer,args.max_token,args.max_tree,args.batch_size, args.nfold,args.determ, args.num_workers, args.seed)
         return dl

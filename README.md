@@ -19,11 +19,11 @@ This code has ben implemented in Python 3 using Pytorch. The packages needed to 
 
 ## Run Demo
 ```bash
-python src/run/main.py --model=RoBERTa_CNN --dataset=twitter15 --epochs=200
+>>> python src/run/main.py --model=RoBERTa_CNN --dataset=twitter15 --epochs=200
 ```
 
 ## Dataset
-The raw dataset, Twitter15 and Twitter16 can be downloaded from https://www.dropbox.com/s/7ewzdrbelpmrnxu/rumdetect2017.zip?dl=0.
+The raw dataset, Twitter15 and Twitter16, can be downloaded from https://www.dropbox.com/s/7ewzdrbelpmrnxu/rumdetect2017.zip?dl=0.
 
 
 ## Citation

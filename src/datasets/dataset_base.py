@@ -20,6 +20,7 @@ def find_class(labels: Union[np.ndarray, List]):
     logger.info(f'Label counts: {list(enumerate(np.bincount(index)))}')
     return index, nclass, class_to_index
 
+
 class DatasetHooks():
     def __init__(self) -> None:
         pass
@@ -41,7 +42,6 @@ class DatasetHooks():
 
     def on_split(self):
         """"""
-
     
 
 class DatasetBase(LightningDataModule, DatasetHooks):
