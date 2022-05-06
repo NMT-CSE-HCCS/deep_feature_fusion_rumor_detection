@@ -14,7 +14,7 @@ The increasing popularity of social media has made the creation and spread of ru
 #### Please consider starring us, if you found it useful. Thanks
 
 ## Requirements
-This code has ben implemented in Python using Pytorch. The following Environment and Library needed to run the code is listed in requirements.txt
+This code has ben implemented in Python 3 using Pytorch. The packages needed to run the code are listed in requirements.txt
 
 
 ## Run Demo

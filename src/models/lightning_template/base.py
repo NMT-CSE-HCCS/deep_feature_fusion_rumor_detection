@@ -118,8 +118,8 @@ class BaseModule(pl.LightningModule):
         )
         exp_name = f'{self.args.model}_{self.args.dataset}_fold={self.args.fold}_nfold={self.args.nfold}'
         ckp_cb = ModelCheckpoint(
-            dirpath='model_checkpoint',
-            filename= exp_name + '-{epoch:02d}-{val_acc_epoch:.3f}',
+            dirpath=f'model_checkpoint/{exp_name}/',
+            filename= 'model-{epoch:02d}-{val_acc_epoch:.3f}',
             monitor=monitor,
             save_top_k=1,
             mode='max'

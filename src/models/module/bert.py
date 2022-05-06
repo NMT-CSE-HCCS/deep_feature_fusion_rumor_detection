@@ -15,7 +15,7 @@ class BERT(nn.Module):
         self.out_dim = self.model.config.hidden_size
         
     def forward(self, input_ids, attention_mask, token_type_ids):
-        return_dict = self.bert(
+        return_dict = self.model(
             input_ids=input_ids,
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,

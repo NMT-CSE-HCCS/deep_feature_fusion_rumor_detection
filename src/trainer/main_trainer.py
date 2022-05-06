@@ -10,26 +10,42 @@ logger = logging.getLogger(__name__)
 
 
 def lightning_training(args, dataset, model):
-    logger.info(f'setup training environment')
+    logger.info(f'[Trianer] setup training environment')
+    
+    # setup pytorch lightning trainer
     trainer = get_trainer(args)
 
+    # setup fold 
     dataset.setup_fold(args.fold)
-    # model training
-    trainer.fit(model, datamodule=dataset)
-    fit_results = trainer.logged_metrics
-    fit_ckp_cb = trainer.checkpoint_callback
-    earlystop_cb = trainer.early_stopping_callback
 
-    # model testing
+    # fit model with given dataset
+    logger.info(f'[Trainer] start fitting model')
+    trainer.fit(model, datamodule=dataset)
+    # retrieve results
+    fit_results = trainer.logged_metrics
+
+    # load the checkpoint of the best model considering the best valiation accuracy
+    fit_ckp_cb = trainer.checkpoint_callback
     best_model_path = fit_ckp_cb.best_model_path
+    logger.info(f'[Trainer]')
+
+    # print early stop info
+    earlystop_cb = trainer.early_stopping_callback
+    if earlystop_cb.stopped_epoch != 0:
+        logger.info(f'[Trainer] earlystopped at epoch {earlystop_cb.stopped_epoch}')
+
+    # test model on the best checkpoint
     if os.path.isfile(best_model_path):
+        logger.info(f'[Trainer] start testing model')
         test_results = trainer.test(ckpt_path=best_model_path, datamodule=dataset)[0]
 
-    if os.path.isfile(best_model_path):
+    # delete checkpoint if delete checkpoint is set
+    if os.path.isfile(best_model_path) and args.delete_checkpoint:
+        logger.info(f'[Trainer] checkpoint deleted {best_model_path}')
         os.remove(best_model_path)
 
     results = {**fit_results, **test_results}
-    logger.info('test_results {}'.format(results))
+    logger.info('[Trainer] test_results {}'.format(results))
 
 def setup_parameters(args):
     if args.model == 'RoBERTa_CNN':
@@ -47,11 +63,14 @@ def setup_parameters(args):
 
 def train(args):
     setup_parameters(args)
-    logger.info(f'[StartTraining] {args.dataset} {args.model}')
-    logger.info(args)
+    logger.info(f'[ScriptInfo] {args.dataset} {args.model}')
+    logger.info(f'[Arguments] \n{args}')
+
+    # setup model and dataset
     model = ModelSelection.getModel(args.model, args=args)
     dataset = DatasetSelection.getDataset(args.dataset, args=args)
-    # setup lighting model 
+
+    # training with pytorch lightning
     lightning_training(args,dataset,model)
     
     
